@@ -8,24 +8,41 @@ Content-Type: application/json
     "state": "todo"
 }
 
-### Create a new Todo
+### Create a new Todo with no title
 POST http://localhost:3000/todos
 Content-Type: application/json
 
 {
-    "title": "Update server.js",
     "description": "OpenAPI + README examples",
     "state": "banana"
 }
 
-### Create a new Todo
+### Create a new Todo with invalid title type
+POST http://localhost:3000/todos
+Content-Type: application/json
+
+{
+    "title": 123,
+    "description": "OpenAPI + README examples",
+    "state": "done"
+}
+
+### Create a new Todo with no state
 POST http://localhost:3000/todos
 Content-Type: application/json
 
 {
     "title": "Write README files",
-    
-    "state": "done"
+    "description": "OpenAPI + README examples",
+}
+### Create a new Todo with invalid state
+POST http://localhost:3000/todos
+Content-Type: application/json
+
+{
+    "title": "Write README files",
+    "description": "OpenAPI + README examples",
+    "state": "no"
 }
 
 ### GET all Todos
@@ -43,6 +60,12 @@ GET http://localhost:3000/todos?state=banana
 
 ### Get todos with id
 GET http://localhost:3000/todos/7cc82fc7-ab07-4753-b2c9-2b6b485a48f3
+
+### Get todos with invalid state
+GET http://localhost:3000/todos?state=invalid
+
+### Get todos with no id
+GET http://localhost:3000/todos/
 
 ### Update a todo
 PUT http://localhost:3000/todos/b30a2511-5dbc-4f5d-bc19-03d1e101ce5c
@@ -62,24 +85,35 @@ Content-Type: application/json
     "state": "done"
 }
 
-### Update a todo with no values
+### Update a todo with invalid title type
 PUT http://localhost:3000/todos/b30a2511-5dbc-4f5d-bc19-03d1e101ce5c
 Content-Type: application/json
 
 {
-    "title": "",
+    "title": 123,
     "state": ""
 }
 
-### Update a todo with no description
+### Update a todo with invalid state
 PUT http://localhost:3000/todos/b30a2511-5dbc-4f5d-bc19-03d1e101ce5c
 Content-Type: application/json
 
 {
-    "title": "",
+    "title": "test todo",
     "state": "done",
-    "description": ""
+    "description": "banana"
+}
+
+### Update a todo with empty body
+PUT http://localhost:3000/todos/b30a2511-5dbc-4f5d-bc19-03d1e101ce5c
+Content-Type: application/json
+
+{
+ 
 
 }
 ### Delete a todo
 DELETE http://localhost:3000/todos/d096c9b0-d5c6-4e9e-a05d-909a861a49d4
+
+### Delete a todo with wrong id
+DELETE http://localhost:3000/todos/invalid
