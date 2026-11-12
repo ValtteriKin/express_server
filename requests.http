@@ -3,7 +3,7 @@ POST http://localhost:3000/todos
 Content-Type: application/json
 
 {
-    "title": "Write API documentation",
+    "title": "",
     "description": "OpenAPI + README examples",
     "state": "todo"
 }
@@ -14,8 +14,8 @@ Content-Type: application/json
 
 {
     "title": "Update server.js",
-    "description": "OpenAPI + README examples",
-    "state": "doing"
+    "description": "OpenAPI + README examples"
+    
 }
 
 ### Create a new Todo

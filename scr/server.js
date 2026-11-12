@@ -13,16 +13,31 @@ app.listen(PORT, () => {   //starts server
 let todos = [];
 
 app.post('/todos', (req, res) => {   //creates a post endpoint with /todos url path
+    const {title, description, state} = req.body; //data sent by put request
+    const allowedStates = ['todo', 'doing', 'done']
+
+    if(typeof title !== 'string' || title.trim().length === 0 || typeof description !== 'string' || description.trim().length === 0){
+    return res.status(400).json({
+        error: 'Todo filled incorrectly'
+    });
+    }
+    if(state !== undefined){   
+        if(!allowedStates.includes(state)){
+            return res.status(400).json({
+            error: 'status filled incorrectly'
+            });
+        }
+    }
     const newTodo = {
         id: uuidv4(),
-        title: req.body.title,
-        description: req.body.description,
-        state: req.body.state || 'todo',   //|| default state
+        title,
+        description,
+        state: state || 'todo',   //|| default state
         dueDate: req.body.dueDate,
         createdAt: new Date().toISOString(), //generates timestamps
         updatedAt: new Date().toISOString()
     };
-    
+
     todos.push(newTodo);
 
     res.status(201).json(newTodo);
