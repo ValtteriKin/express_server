@@ -70,3 +70,20 @@ app.put('/todos/:id', (req, res) => {
 
     res.status(200).json(todo);
 });
+
+
+app.delete('/todos/:id', (req, res) => {
+    const id = req.params.id;
+
+    const todo = todos.findIndex(todo => todo.id === id);   //findIndex returns array index 
+
+    if (todo === -1) {  //-1 means not found
+        return res.status(404).json({
+            error: 'Todo not found'
+        });
+    }
+
+    const deleted = todos.splice(todo, 1);  //splice deletes at given index and number of elemnts given and return deleted items
+    res.status(200).json(deleted);
+
+});

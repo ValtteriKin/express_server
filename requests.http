@@ -1,5 +1,4 @@
 ### Create a new Todo
-
 POST http://localhost:3000/todos
 Content-Type: application/json
 
@@ -10,7 +9,6 @@ Content-Type: application/json
 }
 
 ### Create a new Todo
-
 POST http://localhost:3000/todos
 Content-Type: application/json
 
@@ -21,7 +19,6 @@ Content-Type: application/json
 }
 
 ### Create a new Todo
-
 POST http://localhost:3000/todos
 Content-Type: application/json
 
@@ -32,21 +29,17 @@ Content-Type: application/json
 }
 
 ### GET all Todos
-
 GET http://localhost:3000/todos
 
 
 ### GET todos with state doing
-
 GET http://localhost:3000/todos?state=doing
 
 ### Get todos with state done
-
 GET http://localhost:3000/todos?state=done
 
 
 ### Get todos with id
-
 GET http://localhost:3000/todos/7cc82fc7-ab07-4753-b2c9-2b6b485a48f3
 
 ### Update a todo
@@ -57,3 +50,6 @@ Content-Type: application/json
     "title": "Updated API documentation",
     "state": "done"
 }
+
+### Delete a todo
+DELETE http://localhost:3000/todos/d096c9b0-d5c6-4e9e-a05d-909a861a49d4
