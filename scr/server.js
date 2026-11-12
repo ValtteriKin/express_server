@@ -85,6 +85,33 @@ app.put('/todos/:id', (req, res) => {
 
     const {title, description, state} = req.body; //data sent by put request
 
+    if(title === undefined && description === undefined && state === undefined){
+        return res.status(400).json({
+            error: 'Todo filled incorrectly'
+        });
+    }
+
+    if(title !== undefined){
+        if(typeof title !== 'string' || title.trim().length === 0){
+            return res.status(400).json({
+                error: 'Todo filled incorrectly'
+            });
+        }
+    }
+    if(description !== undefined){
+        if(typeof description !== 'string' || description.trim().length === 0){
+            return res.status(400).json({
+                error: 'Todo filled incorrectly'
+            });
+        }
+    }
+    if(state !== undefined){
+        if(!allowedStates.includes(state)){
+                return res.status(400).json({
+                    error: 'Todo filled incorrectly'
+                });
+        }
+    }
     todo.title = title ?? todo.title;  //checks whether value is null or undefined
     todo.description = description ?? todo.description;  //if value1 is not null or undefined use it.   value1 ?? value2
     todo.state = state ?? todo.state;                    // else use value2

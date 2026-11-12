@@ -3,7 +3,7 @@ POST http://localhost:3000/todos
 Content-Type: application/json
 
 {
-    "title": "",
+    "title": "first update",
     "description": "OpenAPI + README examples",
     "state": "todo"
 }
@@ -24,7 +24,7 @@ Content-Type: application/json
 
 {
     "title": "Write README files",
-    "description": "README examples",
+    
     "state": "done"
 }
 
@@ -38,6 +38,8 @@ GET http://localhost:3000/todos?state=doing
 ### Get todos with state done
 GET http://localhost:3000/todos?state=done
 
+### Get todos with incorect state 
+GET http://localhost:3000/todos?state=banana
 
 ### Get todos with id
 GET http://localhost:3000/todos/7cc82fc7-ab07-4753-b2c9-2b6b485a48f3
@@ -51,5 +53,33 @@ Content-Type: application/json
     "state": "done"
 }
 
+### Update a todo with no title
+PUT http://localhost:3000/todos/b30a2511-5dbc-4f5d-bc19-03d1e101ce5c
+Content-Type: application/json
+
+{
+    "title": "",
+    "state": "done"
+}
+
+### Update a todo with no values
+PUT http://localhost:3000/todos/b30a2511-5dbc-4f5d-bc19-03d1e101ce5c
+Content-Type: application/json
+
+{
+    "title": "",
+    "state": ""
+}
+
+### Update a todo with no description
+PUT http://localhost:3000/todos/b30a2511-5dbc-4f5d-bc19-03d1e101ce5c
+Content-Type: application/json
+
+{
+    "title": "",
+    "state": "done",
+    "description": ""
+
+}
 ### Delete a todo
 DELETE http://localhost:3000/todos/d096c9b0-d5c6-4e9e-a05d-909a861a49d4
