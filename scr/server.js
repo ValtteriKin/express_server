@@ -41,12 +41,32 @@ app.get('/todos', (req, res) => {
 app.get('/todos/:id', (req, res) => {
     const id = req.params.id;
 
-    const todo = todos.find(todo => todo.id === id);
+    const todo = todos.find(todo => todo.id === id);  //finds todo based on id
 
     if(!todo) {
         return res.status(404).json({
             error: 'Todo not found'
         });
     }
+    res.status(200).json(todo);
+});
+
+app.put('/todos/:id', (req, res) => {
+    const id = req.params.id;
+
+    const todo = todos.find(todo => todo.id === id);
+
+    if (!todo) {
+        return res.status(404).json({
+            error: 'Todo not found'
+        });
+    }
+
+    const {title, description, state} = req.body; //data sent by put request
+
+    todo.title = title ?? todo.title;  //checks whether value is null or undefined
+    todo.description = description ?? todo.description;  //if value1 is not null or undefined use it.   value1 ?? value2
+    todo.state = state ?? todo.state;                    // else use value2
+
     res.status(200).json(todo);
 });
