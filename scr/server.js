@@ -11,10 +11,10 @@ app.listen(PORT, () => {   //starts server
 });
 
 let todos = [];
+const allowedStates = ['todo', 'doing', 'done']
 
 app.post('/todos', (req, res) => {   //creates a post endpoint with /todos url path
     const {title, description, state} = req.body; //data sent by put request
-    const allowedStates = ['todo', 'doing', 'done']
 
     if(typeof title !== 'string' || title.trim().length === 0 || typeof description !== 'string' || description.trim().length === 0){
     return res.status(400).json({
@@ -45,7 +45,13 @@ app.post('/todos', (req, res) => {   //creates a post endpoint with /todos url p
 
 app.get('/todos', (req, res) => {
     const state = req.query.state;   //saves query parameter
+   
     if (state) {   //checked if user gave a status filter
+            if(!allowedStates.includes(state)){
+                return res.status(400).json({
+                error: 'status filled incorrectly'
+            });
+        }
         const filteredTodos = todos.filter(todo => todo.state === state);   //returns only those states that mach filter
         return res.status(200).json(filteredTodos);
     }

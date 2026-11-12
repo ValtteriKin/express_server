@@ -14,8 +14,8 @@ Content-Type: application/json
 
 {
     "title": "Update server.js",
-    "description": "OpenAPI + README examples"
-    
+    "description": "OpenAPI + README examples",
+    "state": "banana"
 }
 
 ### Create a new Todo
