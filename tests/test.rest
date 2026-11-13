@@ -68,7 +68,7 @@ GET http://localhost:3000/todos?state=invalid
 GET http://localhost:3000/todos/
 
 ### Update a todo
-PUT http://localhost:3000/todos/b30a2511-5dbc-4f5d-bc19-03d1e101ce5c
+PUT http://localhost:3000/todos/8d5a27f9-517b-4eef-a91a-859afd429e41
 Content-Type: application/json
 
 {
